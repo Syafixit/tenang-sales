@@ -1,0 +1,16 @@
+# Build artifacts
+preview.html
+
+# Python sources (kept locally only)
+images/generate_*.py
+images/*.pdf
+images/ATMOSPHERIC_CARTOGRAPHY.md
+
+# Skill files
+*.skill
+components/
+
+# OS
+Thumbs.db
+.DS_Store
+desktop.ini
