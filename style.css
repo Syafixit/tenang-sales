@@ -1231,6 +1231,33 @@ p { margin-bottom: 1em; }
   border-color: var(--primary-light);
 }
 
+/* Chapter icon (Lucide SVG) */
+.chapter-icon {
+  width: 42px;
+  height: 42px;
+  border-radius: 12px;
+  background: linear-gradient(135deg, var(--bg-soft) 0%, #DFEDF1 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--primary);
+  flex-shrink: 0;
+  transition: background 0.3s ease, color 0.3s ease, transform 0.3s ease;
+  box-shadow: inset 0 0 0 1px rgba(46, 134, 171, 0.15);
+}
+
+.chapter-icon svg {
+  width: 22px;
+  height: 22px;
+}
+
+.chapter-card:hover .chapter-icon {
+  background: linear-gradient(135deg, var(--secondary) 0%, var(--secondary-dark) 100%);
+  color: white;
+  transform: rotate(-4deg) scale(1.05);
+  box-shadow: 0 6px 14px -4px rgba(224, 85, 43, 0.4);
+}
+
 .chapter-num {
   font-family: 'Quicksand', sans-serif;
   font-size: 2.2rem;
@@ -2112,7 +2139,7 @@ p { margin-bottom: 1em; }
     radial-gradient(ellipse at 70% 30%, rgba(224, 85, 43, 0.18) 0%, transparent 55%),
     linear-gradient(135deg, #0F1F2A 0%, #0A1820 100%);
   color: white;
-  padding: 100px 0;
+  padding: 70px 0 100px;
   position: relative;
   overflow: hidden;
 }
@@ -2438,10 +2465,12 @@ p { margin-bottom: 1em; }
 
   .chapter-card {
     padding: 20px;
-    gap: 16px;
+    gap: 14px;
   }
 
-  .chapter-num { font-size: 1.8rem; min-width: 40px; }
+  .chapter-num { font-size: 1.8rem; min-width: 36px; }
+  .chapter-icon { width: 36px; height: 36px; border-radius: 10px; }
+  .chapter-icon svg { width: 18px; height: 18px; }
 
   .bonus-card { padding: 24px; }
 
@@ -2494,6 +2523,81 @@ p { margin-bottom: 1em; }
   opacity: 0.6;
   margin-left: 6px;
   font-weight: 600;
+}
+
+/* ===================================================================
+   SECTION DIVIDERS — halus, decorative
+   =================================================================== */
+
+/* Dotted ornament — antara light sections */
+.section-divider {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 14px;
+  padding: 6px 0 38px;
+  max-width: 540px;
+  margin: 0 auto;
+  background: var(--bg-soft);
+}
+
+.section-divider.on-warm { background: var(--bg-warm); }
+.section-divider.on-white { background: var(--bg-main); }
+
+.section-divider .divider-line {
+  flex: 1;
+  height: 1px;
+  background: linear-gradient(90deg,
+    transparent 0%,
+    rgba(46, 134, 171, 0.25) 50%,
+    transparent 100%);
+}
+
+.section-divider .divider-mark {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: white;
+  color: var(--secondary);
+  border: 1px solid rgba(224, 85, 43, 0.25);
+  font-family: 'Fraunces', serif;
+  font-size: 0.95rem;
+  font-weight: 700;
+  flex-shrink: 0;
+  box-shadow: 0 4px 10px -4px rgba(46, 134, 171, 0.2);
+}
+
+/* Wave divider — antara dark↔light transitions */
+.wave-divider {
+  position: relative;
+  width: 100%;
+  height: 60px;
+  margin-top: -1px;
+  overflow: hidden;
+  line-height: 0;
+  background: var(--bg-soft);
+}
+
+.wave-divider svg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+.wave-divider.from-dark { background: #0F1F2A; }
+.wave-divider.from-dark svg path { fill: var(--bg-soft); }
+.wave-divider.from-light { background: var(--bg-soft); }
+.wave-divider.from-light svg path { fill: #0F1F2A; }
+
+@media (max-width: 600px) {
+  .section-divider { padding: 0 18px 28px; gap: 10px; }
+  .section-divider .divider-mark { width: 28px; height: 28px; font-size: 0.85rem; }
+  .wave-divider { height: 40px; }
 }
 
 /* ===== SECTION TAG light variant (on dark bg) ===== */
@@ -2591,9 +2695,33 @@ p { margin-bottom: 1em; }
 }
 
 .get-icon {
-  font-size: 2.6rem;
-  margin-bottom: 14px;
-  line-height: 1;
+  width: 64px;
+  height: 64px;
+  margin: 0 auto 18px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--bg-warm) 0%, #FDD9CF 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--secondary-dark);
+  position: relative;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  box-shadow:
+    inset 0 0 0 1px rgba(224, 85, 43, 0.15),
+    0 4px 12px -4px rgba(224, 85, 43, 0.25);
+}
+
+.get-icon svg {
+  width: 30px;
+  height: 30px;
+  stroke-width: 1.7;
+}
+
+.get-card:hover .get-icon {
+  transform: scale(1.08) rotate(-3deg);
+  box-shadow:
+    inset 0 0 0 1px rgba(224, 85, 43, 0.25),
+    0 8px 20px -6px rgba(224, 85, 43, 0.4);
 }
 
 .get-card h3 {
