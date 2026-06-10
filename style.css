@@ -2472,3 +2472,317 @@ p { margin-bottom: 1em; }
     transform: translateY(0);
   }
 }
+
+/* ===================================================================
+   CRO OVERHAUL — New Sections
+   =================================================================== */
+
+/* ===== STICKY BAR — honest (strike price, no countdown) ===== */
+.urgency-strike {
+  text-decoration: line-through;
+  opacity: 0.6;
+  margin-left: 6px;
+  font-weight: 600;
+}
+
+/* ===== SECTION TAG light variant (on dark bg) ===== */
+.section-tag.light {
+  background: rgba(255,255,255,0.12);
+  color: var(--highlight);
+}
+
+/* ===== 2. PRODUCT SUMMARY ===== */
+.product-summary {
+  background: var(--bg-main);
+  padding: 80px 0;
+}
+
+.summary-card {
+  background: white;
+  border-radius: var(--radius-xl);
+  padding: 48px;
+  box-shadow: 0 20px 60px -30px rgba(15, 31, 42, 0.2);
+  border: 1px solid var(--border);
+  text-align: center;
+}
+
+.summary-card .section-tag { margin-bottom: 14px; }
+.summary-card h2 { margin-bottom: 36px; }
+.summary-card h2 em { color: var(--secondary-dark); font-style: italic; }
+
+.summary-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 28px;
+  margin-bottom: 36px;
+  text-align: left;
+}
+
+.summary-item {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.summary-icon {
+  font-size: 2.4rem;
+  line-height: 1;
+}
+
+.summary-item strong {
+  display: block;
+  font-family: 'Inter', sans-serif;
+  font-size: 1.05rem;
+  color: var(--primary-deep);
+  margin-bottom: 6px;
+}
+
+.summary-item p {
+  font-size: 0.95rem;
+  color: var(--text-soft);
+  line-height: 1.6;
+  margin: 0;
+}
+
+.summary-result {
+  font-size: 1.15rem;
+  line-height: 1.65;
+  color: var(--text-main);
+  max-width: 620px;
+  margin: 0 auto;
+  padding-top: 28px;
+  border-top: 1px solid var(--border);
+}
+.summary-result strong { color: var(--secondary-dark); }
+
+/* ===== 3. WHAT YOU GET ===== */
+.what-you-get { background: var(--bg-soft); }
+
+.get-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 24px;
+}
+
+.get-card {
+  background: white;
+  padding: 32px 26px;
+  border-radius: var(--radius-lg);
+  text-align: center;
+  border: 1px solid var(--border);
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.get-card:hover {
+  transform: translateY(-6px);
+  box-shadow: var(--shadow-md);
+  border-color: var(--primary-light);
+}
+
+.get-icon {
+  font-size: 2.6rem;
+  margin-bottom: 14px;
+  line-height: 1;
+}
+
+.get-card h3 {
+  font-size: 1.1rem;
+  color: var(--primary);
+  margin-bottom: 10px;
+}
+
+.get-card p {
+  font-size: 0.92rem;
+  color: var(--text-soft);
+  line-height: 1.55;
+  margin: 0;
+}
+
+/* ===== 10. SCREENSHOTS ===== */
+.screenshots { background: var(--bg-main); }
+
+.screenshot-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 24px;
+  margin-bottom: 20px;
+}
+
+.screenshot-item {
+  margin: 0;
+}
+
+.screenshot-frame {
+  background: linear-gradient(135deg, var(--bg-soft) 0%, var(--bg-warm) 100%);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  aspect-ratio: 3 / 4;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  box-shadow: var(--shadow-sm);
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.screenshot-item:hover .screenshot-frame {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-md);
+}
+
+.screenshot-frame img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.screenshot-placeholder {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  color: var(--text-light);
+}
+
+.screenshot-placeholder span { font-size: 3rem; opacity: 0.5; }
+.screenshot-placeholder small {
+  font-family: 'Inter', sans-serif;
+  font-size: 0.8rem;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  font-weight: 600;
+}
+
+.screenshot-item figcaption {
+  margin-top: 12px;
+  text-align: center;
+  font-size: 0.88rem;
+  color: var(--text-soft);
+  line-height: 1.4;
+}
+
+.screenshot-note {
+  text-align: center;
+  font-size: 0.85rem;
+  color: var(--text-light);
+  margin-top: 8px;
+}
+
+/* ===== 11. COMPARISON ===== */
+.comparison { background: var(--bg-soft); }
+
+.compare-list {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.compare-row {
+  display: flex;
+  align-items: flex-start;
+  gap: 18px;
+  padding: 22px 26px;
+  border-radius: var(--radius-lg);
+  background: white;
+  border: 1px solid var(--border);
+}
+
+.compare-row.bad { opacity: 0.92; }
+
+.compare-row.good {
+  background: linear-gradient(135deg, #EDF7EE 0%, #E3F2E6 100%);
+  border: 2px solid var(--success);
+  box-shadow: 0 16px 40px -20px rgba(107, 170, 117, 0.4);
+}
+
+.compare-mark {
+  flex-shrink: 0;
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 800;
+  font-family: 'Inter', sans-serif;
+  font-size: 1.1rem;
+}
+
+.compare-row.bad .compare-mark {
+  background: #F4DAD2;
+  color: var(--secondary-deep);
+}
+
+.compare-row.good .compare-mark {
+  background: var(--success);
+  color: white;
+}
+
+.compare-text strong {
+  display: block;
+  font-family: 'Inter', sans-serif;
+  font-size: 1.08rem;
+  color: var(--primary-deep);
+  margin-bottom: 4px;
+}
+
+.compare-row.good .compare-text strong {
+  color: #2F6B3A;
+  font-size: 1.15rem;
+}
+
+.compare-text span {
+  font-size: 0.95rem;
+  color: var(--text-soft);
+  line-height: 1.55;
+}
+
+.compare-row.good .compare-text span {
+  color: #3D5A43;
+}
+
+/* ===== PRICING — honest note ===== */
+.pricing-honest-note {
+  margin-top: 20px;
+  font-size: 0.82rem;
+  color: var(--text-soft);
+  line-height: 1.6;
+  padding-top: 18px;
+  border-top: 1px solid var(--border);
+}
+
+/* Value table spacing above pricing card */
+.pricing .value-table {
+  max-width: 540px;
+  margin: 0 auto 40px;
+  background: rgba(255,255,255,0.95);
+}
+
+/* ===== FINAL CTA — trust note (replaces fake timer) ===== */
+.final-note {
+  margin-top: 18px;
+  margin-bottom: 0;
+  font-size: 0.92rem;
+  color: var(--text-soft);
+  font-style: italic;
+  line-height: 1.5;
+}
+
+/* ===================================================================
+   RESPONSIVE — new sections
+   =================================================================== */
+@media (max-width: 900px) {
+  .summary-grid { grid-template-columns: 1fr; gap: 22px; }
+  .summary-card { padding: 32px 24px; }
+  .get-grid { grid-template-columns: repeat(2, 1fr); }
+  .screenshot-grid { grid-template-columns: repeat(2, 1fr); }
+}
+
+@media (max-width: 600px) {
+  .get-grid { grid-template-columns: 1fr; }
+  .screenshot-grid { grid-template-columns: repeat(2, 1fr); gap: 16px; }
+  .compare-row { padding: 18px; gap: 14px; }
+  .summary-result { font-size: 1.05rem; }
+  .pricing .value-table { margin-bottom: 30px; }
+}
