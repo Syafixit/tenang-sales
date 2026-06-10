@@ -1,0 +1,239 @@
+/* ===================================================================
+   shape-landing-hero.css
+   Vanilla CSS port of shape-landing-hero.tsx (React / framer-motion)
+
+   Animation layer is UNCHANGED from the original spec:
+     - Entrance: duration 2.4s, cubic-bezier(0.23, 0.86, 0.39, 0.96)
+     - Opacity:  duration 1.2s (half of entrance), ease-out
+     - Float:    duration 12s, ease-in-out, infinite  (y: 0 → 15px → 0)
+     - Content:  duration 1s, cubic-bezier(0.25, 0.4, 0.25, 1), stagger 0.2s
+
+   Color tokens pulled directly from the project's Ocean Breeze palette
+   defined in style.css (:root custom properties).
+   =================================================================== */
+
+
+/* ─── Keyframes ───────────────────────────────────────────────────── */
+
+/* Outer wrapper: slides in from -150px + rotates to final angle      */
+@keyframes shapeEntranceTransform {
+  from { transform: translateY(-150px) rotate(var(--from-rotate, 0deg)); }
+  to   { transform: translateY(0)      rotate(var(--to-rotate,   0deg)); }
+}
+
+/* Outer wrapper: fades in over 1.2s (framer: opacity: { duration: 1.2 }) */
+@keyframes shapeEntranceOpacity {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+/* Inner pill: perpetual gentle float (framer: y [0, 15, 0], 12s infinite) */
+@keyframes shapeFloat {
+  0%,  100% { transform: translateY(0px);  }
+  50%        { transform: translateY(15px); }
+}
+
+/* Hero content: fade up (framer: fadeUpVariants, y 30 → 0) */
+@keyframes heroFadeUp {
+  from { opacity: 0; transform: translateY(30px); }
+  to   { opacity: 1; transform: translateY(0);    }
+}
+
+
+/* ─── Shapes container ────────────────────────────────────────────── */
+
+.hero-shapes {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+  z-index: 0;
+}
+
+
+/* ─── Base shape wrapper (outer motion.div equivalent) ───────────── */
+
+.elegant-shape {
+  position: absolute;
+  opacity: 0;                        /* hidden until animation fires  */
+  animation:
+    shapeEntranceTransform 2.4s cubic-bezier(0.23, 0.86, 0.39, 0.96)
+      var(--delay, 0s) forwards,
+    shapeEntranceOpacity   1.2s ease-out
+      var(--delay, 0s) forwards;
+}
+
+
+/* ─── Inner pill (inner motion.div equivalent) ───────────────────── */
+
+.shape-pill {
+  border-radius: 9999px;
+  position: relative;
+  backdrop-filter: blur(2px);
+  -webkit-backdrop-filter: blur(2px);
+  border: 2px solid rgba(255, 255, 255, 0.12);  /* matches border-white/[0.15] */
+  box-shadow: 0 8px 32px 0 rgba(255, 255, 255, 0.06);
+  animation: shapeFloat 12s ease-in-out var(--delay, 0s) infinite;
+}
+
+/* Radial highlight overlay (matches after:bg-[radial-gradient…]) */
+.shape-pill::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: 9999px;
+  background: radial-gradient(
+    circle at 50% 50%,
+    rgba(255, 255, 255, 0.18),
+    transparent 70%
+  );
+}
+
+
+/* ─── Shape instances ─────────────────────────────────────────────── */
+/*
+   Original props → CSS translation
+   Shape 1: delay=0.3s  w=600 h=140 rotate=12   gradient=indigo
+   Shape 2: delay=0.5s  w=500 h=120 rotate=-15  gradient=rose
+   Shape 3: delay=0.4s  w=300 h=80  rotate=-8   gradient=violet
+   Shape 4: delay=0.6s  w=200 h=60  rotate=20   gradient=amber
+   Shape 5: delay=0.7s  w=150 h=40  rotate=-25  gradient=cyan
+
+   Colors remapped to Ocean Breeze tokens:
+     indigo  → --primary       #2E86AB
+     rose    → --secondary     #E0552B
+     violet  → --primary-dark  #1B5F7E
+     amber   → --highlight     #FFD580
+     cyan    → --primary-light #A8DADC
+*/
+
+/* Shape 1 — large pill, primary blue, top-left */
+.shape-1 {
+  --delay:       0.3s;
+  --from-rotate: -3deg;   /* rotate(12) - 15 = -3 */
+  --to-rotate:   12deg;
+  left: -10%;
+  top:  15%;
+}
+.shape-1 .shape-pill {
+  width:  600px;
+  height: 140px;
+  background: linear-gradient(to right, rgba(46, 134, 171, 0.15), transparent);
+  border-color: rgba(168, 218, 220, 0.15);
+  box-shadow:   0 8px 32px 0 rgba(46, 134, 171, 0.08);
+}
+
+/* Shape 2 — medium pill, secondary coral, bottom-right */
+.shape-2 {
+  --delay:       0.5s;
+  --from-rotate: -30deg;  /* -15 - 15 = -30 */
+  --to-rotate:   -15deg;
+  right: -5%;
+  top:   70%;
+}
+.shape-2 .shape-pill {
+  width:  500px;
+  height: 120px;
+  background: linear-gradient(to right, rgba(224, 85, 43, 0.15), transparent);
+  border-color: rgba(224, 85, 43, 0.15);
+  box-shadow:   0 8px 32px 0 rgba(224, 85, 43, 0.08);
+}
+
+/* Shape 3 — small pill, primary dark, bottom-left */
+.shape-3 {
+  --delay:       0.4s;
+  --from-rotate: -23deg;  /* -8 - 15 = -23 */
+  --to-rotate:   -8deg;
+  left:   5%;
+  bottom: 5%;
+}
+.shape-3 .shape-pill {
+  width:  300px;
+  height: 80px;
+  background: linear-gradient(to right, rgba(27, 95, 126, 0.15), transparent);
+  border-color: rgba(27, 95, 126, 0.15);
+  box-shadow:   0 8px 32px 0 rgba(27, 95, 126, 0.08);
+}
+
+/* Shape 4 — small pill, highlight gold, top-right */
+.shape-4 {
+  --delay:       0.6s;
+  --from-rotate: 5deg;    /* 20 - 15 = 5 */
+  --to-rotate:   20deg;
+  right: 15%;
+  top:   10%;
+}
+.shape-4 .shape-pill {
+  width:  200px;
+  height: 60px;
+  background: linear-gradient(to right, rgba(255, 213, 128, 0.15), transparent);
+  border-color: rgba(255, 213, 128, 0.15);
+  box-shadow:   0 8px 32px 0 rgba(244, 185, 93, 0.08);
+}
+
+/* Shape 5 — tiny pill, primary light teal, top-left-inner */
+.shape-5 {
+  --delay:       0.7s;
+  --from-rotate: -40deg;  /* -25 - 15 = -40 */
+  --to-rotate:   -25deg;
+  left: 20%;
+  top:   5%;
+}
+.shape-5 .shape-pill {
+  width:  150px;
+  height: 40px;
+  background: linear-gradient(to right, rgba(168, 218, 220, 0.15), transparent);
+  border-color: rgba(168, 218, 220, 0.15);
+  box-shadow:   0 8px 32px 0 rgba(168, 218, 220, 0.08);
+}
+
+
+/* ─── Responsive adjustments (matches md: breakpoints in TSX) ──────── */
+
+@media (min-width: 768px) {
+  .shape-1 { left: -5%;  top:    20%; }
+  .shape-2 { right: 0%;  top:    75%; }
+  .shape-3 { left: 10%;  bottom: 10%; }
+  .shape-4 { right: 20%; top:    15%; }
+  .shape-5 { left: 25%;  top:    10%; }
+}
+
+
+/* ─── Hero content stagger animations ────────────────────────────── */
+/*
+   Matches fadeUpVariants:
+     custom={0} → delay 0.5s  (badge)
+     custom={1} → delay 0.7s  (title)
+     custom={2} → delay 0.9s  (body)
+   Duration 1s, cubic-bezier(0.25, 0.4, 0.25, 1)
+*/
+
+.hero-badge-anim {
+  opacity: 0;
+  animation: heroFadeUp 1s cubic-bezier(0.25, 0.4, 0.25, 1) 0.5s both;
+}
+
+.hero-title-anim {
+  opacity: 0;
+  animation: heroFadeUp 1s cubic-bezier(0.25, 0.4, 0.25, 1) 0.7s both;
+}
+
+.hero-desc-anim {
+  opacity: 0;
+  animation: heroFadeUp 1s cubic-bezier(0.25, 0.4, 0.25, 1) 0.9s both;
+}
+
+
+/* ─── Accessibility: honour prefers-reduced-motion ───────────────── */
+
+@media (prefers-reduced-motion: reduce) {
+  .elegant-shape,
+  .shape-pill,
+  .hero-badge-anim,
+  .hero-title-anim,
+  .hero-desc-anim {
+    animation: none !important;
+    opacity: 1    !important;
+    transform: none !important;
+  }
+}

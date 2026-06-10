@@ -8,7 +8,9 @@ images/ATMOSPHERIC_CARTOGRAPHY.md
 
 # Skill files
 *.skill
-components/
+# Note: components/ui/*.css IS tracked (referenced by index.html)
+components/**/*.json
+components/**/*.tsx
 
 # OS
 Thumbs.db
