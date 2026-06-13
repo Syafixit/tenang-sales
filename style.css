@@ -3194,3 +3194,22 @@ p { margin-bottom: 1em; }
 /* Pricing section header on dark bg — force light text */
 .pricing .section-title { color: #FFFFFF; }
 .pricing .section-header { margin-bottom: 30px; }
+
+/* ===== Tier upsell hint (micro-tagline below price) ===== */
+.tier-upsell-hint {
+  font-size: 0.82rem;
+  color: var(--text-soft);
+  margin: -6px 0 16px;
+  padding: 8px 12px;
+  background: linear-gradient(135deg, var(--bg-warm) 0%, var(--bg-soft) 100%);
+  border-left: 3px solid var(--secondary);
+  border-radius: 0 6px 6px 0;
+  line-height: 1.4;
+}
+.tier-upsell-hint strong {
+  color: var(--secondary-dark);
+  font-weight: 800;
+}
+.tier-card.popular .tier-upsell-hint {
+  border-left-color: var(--secondary-dark);
+}
